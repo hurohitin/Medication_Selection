@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:med="http://www.semanticweb.org/drug_es/ontology#"
+         xml:base="http://www.semanticweb.org/drug_es/ontology">
+
+    <!-- ============================================================ -->
+    <!-- ОНТОЛОГИЯ                                                    -->
+    <!-- ============================================================ -->
+    <owl:Ontology rdf:about="http://www.semanticweb.org/drug_es/ontology">
+        <rdfs:comment xml:lang="ru">Онтология предметной области «Подбор лекарственных препаратов по симптомам и противопоказаниям» (ЛР3)</rdfs:comment>
+        <rdfs:label xml:lang="ru">Медицинская онтология: подбор препаратов</rdfs:label>
+    </owl:Ontology>
+
+    <!-- ============================================================ -->
+    <!-- КЛАССЫ (Classes)                                             -->
+    <!-- ============================================================ -->
+
+    <!-- Корневой класс -->
+    <owl:Class rdf:about="#МедицинскийОбъект">
+        <rdfs:label xml:lang="ru">Медицинский объект</rdfs:label>
+        <rdfs:comment>Корневой класс онтологии</rdfs:comment>
+    </owl:Class>
+
+    <!-- Пациент -->
+    <owl:Class rdf:about="#Пациент">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Пациент</rdfs:label>
+    </owl:Class>
+
+    <!-- Симптом -->
+    <owl:Class rdf:about="#Симптом">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Симптом</rdfs:label>
+    </owl:Class>
+
+    <!-- Заболевание -->
+    <owl:Class rdf:about="#Заболевание">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Заболевание</rdfs:label>
+    </owl:Class>
+
+    <!-- Аллергия -->
+    <owl:Class rdf:about="#Аллергия">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Аллергия</rdfs:label>
+    </owl:Class>
+
+    <!-- Побочная реакция -->
+    <owl:Class rdf:about="#Побочная_реакция">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Побочная реакция</rdfs:label>
+    </owl:Class>
+
+    <!-- Препарат и его подклассы -->
+    <owl:Class rdf:about="#Препарат">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Препарат</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Анальгетик">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Анальгетик</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Жаропонижающее">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Жаропонижающее</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Противовоспалительное">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Противовоспалительное</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Антигистаминное">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Антигистаминное</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Противовирусное">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Противовирусное</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Антибактериальное">
+        <rdfs:subClassOf rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">Антибактериальное</rdfs:label>
+    </owl:Class>
+
+    <!-- Противопоказание и его подклассы -->
+    <owl:Class rdf:about="#Противопоказание">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Противопоказание</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Абсолютное_противопоказание">
+        <rdfs:subClassOf rdf:resource="#Противопоказание"/>
+        <rdfs:label xml:lang="ru">Абсолютное противопоказание</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Относительное_противопоказание">
+        <rdfs:subClassOf rdf:resource="#Противопоказание"/>
+        <rdfs:label xml:lang="ru">Относительное противопоказание</rdfs:label>
+    </owl:Class>
+
+    <!-- Взаимодействие и его подклассы -->
+    <owl:Class rdf:about="#Взаимодействие">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Взаимодействие</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Синергизм">
+        <rdfs:subClassOf rdf:resource="#Взаимодействие"/>
+        <rdfs:label xml:lang="ru">Синергизм</rdfs:label>
+    </owl:Class>
+
+    <owl:Class rdf:about="#Антагонизм">
+        <rdfs:subClassOf rdf:resource="#Взаимодействие"/>
+        <rdfs:label xml:lang="ru">Антагонизм</rdfs:label>
+    </owl:Class>
+
+    <!-- Фармакологическая группа -->
+    <owl:Class rdf:about="#Фармакологическая_группа">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Фармакологическая группа</rdfs:label>
+    </owl:Class>
+
+    <!-- Рекомендация -->
+    <owl:Class rdf:about="#Рекомендация">
+        <rdfs:subClassOf rdf:resource="#МедицинскийОбъект"/>
+        <rdfs:label xml:lang="ru">Рекомендация</rdfs:label>
+    </owl:Class>
+
+    <!-- ============================================================ -->
+    <!-- OBJECT PROPERTIES (свойства объектов)                        -->
+    <!-- ============================================================ -->
+
+    <owl:ObjectProperty rdf:about="#имеетСимптом">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="#Симптом"/>
+        <rdfs:label xml:lang="ru">имеет симптом</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#имеетЗаболевание">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="#Заболевание"/>
+        <rdfs:label xml:lang="ru">имеет заболевание</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#имеетАллергию">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="#Аллергия"/>
+        <rdfs:label xml:lang="ru">имеет аллергию</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#принимаетПрепарат">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="#Препарат"/>
+        <rdfs:label xml:lang="ru">принимает препарат</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#показанПри">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Симптом"/>
+        <rdfs:label xml:lang="ru">показан при</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#имеетПротивопоказание">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Противопоказание"/>
+        <rdfs:label xml:lang="ru">имеет противопоказание</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#вызываетПобочнуюРеакцию">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Побочная_реакция"/>
+        <rdfs:label xml:lang="ru">вызывает побочную реакцию</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#взаимодействуетС">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Взаимодействие"/>
+        <rdfs:label xml:lang="ru">взаимодействует с</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#относитсяКГруппе">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Фармакологическая_группа"/>
+        <rdfs:label xml:lang="ru">относится к группе</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#рекомендованПациенту">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Пациент"/>
+        <rdfs:label xml:lang="ru">рекомендован пациенту</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#исключёнИз">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="#Рекомендация"/>
+        <rdfs:label xml:lang="ru">исключён из</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#сформированаДля">
+        <rdfs:domain rdf:resource="#Рекомендация"/>
+        <rdfs:range rdf:resource="#Пациент"/>
+        <rdfs:label xml:lang="ru">сформирована для</rdfs:label>
+    </owl:ObjectProperty>
+
+    <!-- ============================================================ -->
+    <!-- DATA PROPERTIES (свойства данных)                            -->
+    <!-- ============================================================ -->
+
+    <owl:DatatypeProperty rdf:about="#возраст">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:label xml:lang="ru">возраст</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#пол">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">пол</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#вес">
+        <rdfs:domain rdf:resource="#Пациент"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:label xml:lang="ru">вес</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#название_симптома">
+        <rdfs:domain rdf:resource="#Симптом"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">название симптома</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#интенсивность">
+        <rdfs:domain rdf:resource="#Симптом"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:label xml:lang="ru">интенсивность</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#длительность">
+        <rdfs:domain rdf:resource="#Симптом"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">длительность</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#название_препарата">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">название препарата</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#действующее_вещество">
+        <rdfs:domain rdf:resource="#Препарат"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">действующее вещество</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#атхКод">
+        <rdfs:domain rdf:resource="#Фармакологическая_группа"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">АТХ-код</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#степень_риска">
+        <rdfs:domain rdf:resource="#Противопоказание"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">степень риска</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#текст_рекомендации">
+        <rdfs:domain rdf:resource="#Рекомендация"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">текст рекомендации</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="#тяжесть_взаимодействия">
+        <rdfs:domain rdf:resource="#Взаимодействие"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="ru">тяжесть взаимодействия</rdfs:label>
+    </owl:DatatypeProperty>
+
+    <!-- ============================================================ -->
+    <!-- ИНДИВИДЫ (Individuals)                                       -->
+    <!-- ============================================================ -->
+
+    <!-- === Симптомы === -->
+    <owl:NamedIndividual rdf:about="#ГоловнаяБоль">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>головная боль</med:название_симптома>
+        <med:интенсивность rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</med:интенсивность>
+        <med:длительность>2 дня</med:длительность>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Температура">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>температура</med:название_симптома>
+        <med:интенсивность rdf:datatype="http://www.w3.org/2001/XMLSchema#int">7</med:интенсивность>
+        <med:длительность>1 день</med:длительность>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Кашель">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>кашель</med:название_симптома>
+        <med:интенсивность rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</med:интенсивность>
+        <med:длительность>3 дня</med:длительность>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Насморк">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>насморк</med:название_симптома>
+        <med:интенсивность rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</med:интенсивность>
+        <med:длительность>4 дня</med:длительность>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#БольВГорле">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>боль в горле</med:название_симптома>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Аллергия_симптом">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>аллергия</med:название_симптома>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#БольВСуставах">
+        <rdf:type rdf:resource="#Симптом"/>
+        <med:название_симптома>боль в суставах</med:название_симптома>
+    </owl:NamedIndividual>
+
+    <!-- === Заболевания === -->
+    <owl:NamedIndividual rdf:about="#ЯзваЖелудка">
+        <rdf:type rdf:resource="#Заболевание"/>
+        <rdfs:label xml:lang="ru">Язва желудка</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ПочечнаяНедостаточность">
+        <rdf:type rdf:resource="#Заболевание"/>
+        <rdfs:label xml:lang="ru">Почечная недостаточность</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- === Противопоказания === -->
+    <owl:NamedIndividual rdf:about="#ЯзваЖелудка_ПП">
+        <rdf:type rdf:resource="#Абсолютное_противопоказание"/>
+        <med:степень_риска>высокая</med:степень_риска>
+        <rdfs:label xml:lang="ru">Язва желудка (абсолютное)</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#АллергияНаПенициллин_ПП">
+        <rdf:type rdf:resource="#Абсолютное_противопоказание"/>
+        <med:степень_риска>высокая</med:степень_риска>
+        <rdfs:label xml:lang="ru">Аллергия на пенициллин (абсолютное)</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Беременность_ПП">
+        <rdf:type rdf:resource="#Абсолютное_противопоказание"/>
+        <med:степень_риска>высокая</med:степень_риска>
+        <rdfs:label xml:lang="ru">Беременность (абсолютное)</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ДетскийВозраст_ПП">
+        <rdf:type rdf:resource="#Относительное_противопоказание"/>
+        <med:степень_риска>средняя</med:степень_риска>
+        <rdfs:label xml:lang="ru">Детский возраст (относительное)</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#ПочечнаяНедостаточность_ПП">
+        <rdf:type rdf:resource="#Абсолютное_противопоказание"/>
+        <med:степень_риска>высокая</med:степень_риска>
+        <rdfs:label xml:lang="ru">Почечная недостаточность (абсолютное)</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- === Аллергии === -->
+    <owl:NamedIndividual rdf:about="#АллергияНаПенициллин">
+        <rdf:type rdf:resource="#Аллергия"/>
+        <rdfs:label xml:lang="ru">Аллергия на пенициллин</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- === Фармакологические группы === -->
+    <owl:NamedIndividual rdf:about="#Группа_Анальгетик">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>N02</med:атхКод>
+        <rdfs:label xml:lang="ru">Анальгетик</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Группа_Жаропонижающее">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>N02B</med:атхКод>
+        <rdfs:label xml:lang="ru">Жаропонижающее</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Группа_Противовоспалительное">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>M01A</med:атхКод>
+        <rdfs:label xml:lang="ru">Противовоспалительное</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Группа_Антигистаминное">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>R06</med:атхКод>
+        <rdfs:label xml:lang="ru">Антигистаминное</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Группа_Противовирусное">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>J05</med:атхКод>
+        <rdfs:label xml:lang="ru">Противовирусное</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Группа_Антибактериальное">
+        <rdf:type rdf:resource="#Фармакологическая_группа"/>
+        <med:атхКод>J01</med:атхКод>
+        <rdfs:label xml:lang="ru">Антибактериальное</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- === Побочные реакции === -->
+    <owl:NamedIndividual rdf:about="#Тошнота">
+        <rdf:type rdf:resource="#Побочная_реакция"/>
+        <rdfs:label xml:lang="ru">Тошнота</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Изжога">
+        <rdf:type rdf:resource="#Побочная_реакция"/>
+        <rdfs:label xml:lang="ru">Изжога</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Сонливость">
+        <rdf:type rdf:resource="#Побочная_реакция"/>
+        <rdfs:label xml:lang="ru">Сонливость</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="#Диарея">
+        <rdf:type rdf:resource="#Побочная_реакция"/>
+        <rdfs:label xml:lang="ru">Диарея</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- === Препараты === -->
+
+    <!-- Парацетамол -->
+    <owl:NamedIndividual rdf:about="#Парацетамол">
+        <rdf:type rdf:resource="#Жаропонижающее"/>
+        <med:название_препарата>Парацетамол</med:название_препарата>
+        <med:действующее_вещество>парацетамол</med:действующее_вещество>
+        <med:показанПри rdf:resource="#Температура"/>
+        <med:показанПри rdf:resource="#ГоловнаяБоль"/>
+        <med:имеетПротивопоказание rdf:resource="#ПочечнаяНедостаточность_ПП"/>
+        <med:вызываетПобочнуюРеакцию rdf:resource="#Тошнота"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Жаропонижающее"/>
+    </owl:NamedIndividual>
+
+    <!-- Ибупрофен -->
+    <owl:NamedIndividual rdf:about="#Ибупрофен">
+        <rdf:type rdf:resource="#Противовоспалительное"/>
+        <med:название_препарата>Ибупрофен</med:название_препарата>
+        <med:действующее_вещество>ибупрофен</med:действующее_вещество>
+        <med:показанПри rdf:resource="#ГоловнаяБоль"/>
+        <med:показанПри rdf:resource="#БольВСуставах"/>
+        <med:показанПри rdf:resource="#Температура"/>
+        <med:имеетПротивопоказание rdf:resource="#ЯзваЖелудка_ПП"/>
+        <med:имеетПротивопоказание rdf:resource="#Беременность_ПП"/>
+        <med:вызываетПобочнуюРеакцию rdf:resource="#Изжога"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Противовоспалительное"/>
+    </owl:NamedIndividual>
+
+    <!-- Аспирин -->
+    <owl:NamedIndividual rdf:about="#Аспирин">
+        <rdf:type rdf:resource="#Противовоспалительное"/>
+        <med:название_препарата>Аспирин</med:название_препарата>
+        <med:действующее_вещество>ацетилсалициловая кислота</med:действующее_вещество>
+        <med:показанПри rdf:resource="#ГоловнаяБоль"/>
+        <med:показанПри rdf:resource="#Температура"/>
+        <med:имеетПротивопоказание rdf:resource="#ЯзваЖелудка_ПП"/>
+        <med:имеетПротивопоказание rdf:resource="#ДетскийВозраст_ПП"/>
+        <med:вызываетПобочнуюРеакцию rdf:resource="#Изжога"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Противовоспалительное"/>
+    </owl:NamedIndividual>
+
+    <!-- Супрастин -->
+    <owl:NamedIndividual rdf:about="#Супрастин">
+        <rdf:type rdf:resource="#Антигистаминное"/>
+        <med:название_препарата>Супрастин</med:название_препарата>
+        <med:действующее_вещество>хлоропирамин</med:действующее_вещество>
+        <med:показанПри rdf:resource="#Аллергия_симптом"/>
+        <med:показанПри rdf:resource="#Насморк"/>
+        <med:имеетПротивопоказание rdf:resource="#Беременность_ПП"/>
+        <med:вызываетПобочнуюРеакцию rdf:resource="#Сонливость"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Антигистаминное"/>
+    </owl:NamedIndividual>
+
+    <!-- Лоратадин -->
+    <owl:NamedIndividual rdf:about="#Лоратадин">
+        <rdf:type rdf:resource="#Антигистаминное"/>
+        <med:название_препарата>Лоратадин</med:название_препарата>
+        <med:действующее_вещество>лоратадин</med:действующее_вещество>
+        <med:показанПри rdf:resource="#Аллергия_симптом"/>
+        <med:показанПри rdf:resource="#Насморк"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Антигистаминное"/>
+    </owl:NamedIndividual>
+
+    <!-- Амоксициллин -->
+    <owl:NamedIndividual rdf:about="#Амоксициллин">
+        <rdf:type rdf:resource="#Антибактериальное"/>
+        <med:название_препарата>Амоксициллин</med:название_препарата>
+        <med:действующее_вещество>амоксициллин</med:действующее_вещество>
+        <med:показанПри rdf:resource="#БольВГорле"/>
+        <med:показанПри rdf:resource="#Кашель"/>
+        <med:показанПри rdf:resource="#Температура"/>
+        <med:имеетПротивопоказание rdf:resource="#АллергияНаПенициллин_ПП"/>
+        <med:вызываетПобочнуюРеакцию rdf:resource="#Диарея"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Антибактериальное"/>
+    </owl:NamedIndividual>
+
+    <!-- Арбидол -->
+    <owl:NamedIndividual rdf:about="#Арбидол">
+        <rdf:type rdf:resource="#Противовирусное"/>
+        <med:название_препарата>Арбидол</med:название_препарата>
+        <med:действующее_вещество>умифеновир</med:действующее_вещество>
+        <med:показанПри rdf:resource="#Кашель"/>
+        <med:показанПри rdf:resource="#Насморк"/>
+        <med:показанПри rdf:resource="#Температура"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Противовирусное"/>
+    </owl:NamedIndividual>
+
+    <!-- Но-шпа -->
+    <owl:NamedIndividual rdf:about="#Но_шпа">
+        <rdf:type rdf:resource="#Анальгетик"/>
+        <med:название_препарата>Но-шпа</med:название_препарата>
+        <med:действующее_вещество>дротаверин</med:действующее_вещество>
+        <med:показанПри rdf:resource="#ГоловнаяБоль"/>
+        <med:показанПри rdf:resource="#БольВСуставах"/>
+        <med:имеетПротивопоказание rdf:resource="#ПочечнаяНедостаточность_ПП"/>
+        <med:относитсяКГруппе rdf:resource="#Группа_Анальгетик"/>
+    </owl:NamedIndividual>
+
+    <!-- === Пациент_1 (пример из ЛР3) === -->
+    <owl:NamedIndividual rdf:about="#Пациент_1">
+        <rdf:type rdf:resource="#Пациент"/>
+        <med:возраст rdf:datatype="http://www.w3.org/2001/XMLSchema#int">30</med:возраст>
+        <med:пол>М</med:пол>
+        <med:вес rdf:datatype="http://www.w3.org/2001/XMLSchema#float">70.0</med:вес>
+        <med:имеетСимптом rdf:resource="#ГоловнаяБоль"/>
+        <med:имеетСимптом rdf:resource="#Температура"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
